@@ -1,0 +1,15 @@
+<p>voter-list works!</p>
+<!-- filepath: /election-app/src/app/components/voter-list/voter-list.component.html -->
+<div>
+  <h2>Voters</h2>
+  @if(voters.length > 0) {
+    <p>There are {{ voters.length }} voters.</p>
+  }
+  @else {
+    <p>There are no voters.</p>
+  }
+
+   @for(voter of voters;track voter){
+    <li>{{ voter.name }} - {{ voter.age }}</li>
+   }
+</div>
