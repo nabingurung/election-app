@@ -1,9 +1,8 @@
-namespace ElectionService.Models
+namespace ElectionService.Dtos
 {
-    public class Voter
+    public class RegisterVoterRequest
     {
-        public int Id { get; set; }
-        public string FirstName { get; set; }
+          public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -17,7 +16,5 @@ namespace ElectionService.Models
         public DateTime DateOfBirth { get; set; }
     
         public string ReferredBy { get; set; }
-        public DateTime CreatedAt { get; internal set; }
-        public DateTime UpdatedAt { get; internal set; }
     }
 }

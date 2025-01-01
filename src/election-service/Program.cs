@@ -1,4 +1,6 @@
+using System.Reflection;
 using ElectionService.Infrastructure;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +14,9 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
 {
     options.UseSqlite(builder.Configuration.GetConnectionString("DbConnection"));
 });
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly
+(Assembly.GetExecutingAssembly()));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -4,3 +4,33 @@ GET {{election_service_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+
+# Register a new voter
+POST {{election_service_HostAddress}}/api/voter
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "firstName": "John",
+  "middleName": "A",
+  "lastName": "Doe",
+  "address": "123 Main St",
+  "city": "Springfield",
+  "state": "IL",
+  "zipCode": "62701",
+  "phoneNumber": "555-1234",
+  "referredBy": "Jane Smith"
+}
+
+###
+
+# Get all registered voters
+GET {{election_service_HostAddress}}/api/voter
+Accept: application/json
+
+###
+
+# Get a specific voter by ID
+GET {{election_service_HostAddress}}/api/voter/1
+Accept: application/json

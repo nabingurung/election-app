@@ -7,6 +7,6 @@ namespace ElectionService.Infrastructure
     {
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
-        public DbSet<Election> Elections { get; set; }
+        public DbSet<Voter> Voters { get; set; }
     }
 }
