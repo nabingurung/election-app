@@ -1,7 +1,8 @@
-// filepath: /election-app/src/app/services/voter.service.ts
+// Purpose: Voter service to handle HTTP requests for Voter data.
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Voter } from '../models/voter.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,11 @@ export class VoterService {
 
   constructor(private http: HttpClient) { }
 
-  getVoters(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+  getVoters(): Observable<Voter[]> {
+    return this.http.get<Voter[]>(this.apiUrl);
+  }
+
+  addVoter(voter: Voter): Observable<Voter> {
+    return this.http.post<Voter>(this.apiUrl, voter);
   }
 }

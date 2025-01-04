@@ -10,17 +10,17 @@ POST {{election_service_HostAddress}}/api/voter
 Content-Type: application/json
 
 {
-  "name": "John Doe",
+  "name": "nathan Gurung",
   "email": "john.doe@example.com",
-  "firstName": "John",
-  "middleName": "A",
-  "lastName": "Doe",
+  "firstName": "Nathan",
+  "middleName": "B",
+  "lastName": "Gurung",
   "address": "123 Main St",
   "city": "Springfield",
   "state": "IL",
   "zipCode": "62701",
-  "phoneNumber": "555-1234",
-  "referredBy": "Jane Smith"
+  "phoneNumber": "120-555-1234",
+  "referredBy": "Bindu Gurung"
 }
 
 ###

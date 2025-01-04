@@ -1,0 +1,58 @@
+<div class="container mt-4">
+  <h2>Add New Voter</h2>
+  <form [formGroup]="voterForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First Name</label>
+      <input type="text" id="firstName" class="form-control" formControlName="firstName">
+    </div>
+    <div class="mb-3">
+      <label for="middleName" class="form-label">Middle Name</label>
+      <input type="text" id="middleName" class="form-control" formControlName="middleName">
+    </div>
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Last Name</label>
+      <input type="text" id="lastName" class="form-control" formControlName="lastName">
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" id="email" class="form-control" formControlName="email">
+    </div>
+    <div class="mb-3">
+      <label for="address" class="form-label">Address</label>
+      <input type="text" id="address" class="form-control" formControlName="address">
+    </div>
+    <div class="mb-3">
+      <label for="city" class="form-label">City</label>
+      <input type="text" id="city" class="form-control" formControlName="city">
+    </div>
+    <div class="mb-3">
+      <label for="state" class="form-label">State</label>
+      <input type="text" id="state" class="form-control" formControlName="state">
+    </div>
+    <div class="mb-3">
+      <label for="zipCode" class="form-label">Zip Code</label>
+      <input type="text" id="zipCode" class="form-control" formControlName="zipCode">
+    </div>
+    <div class="mb-3">
+      <label for="phoneNumber" class="form-label">Phone Number</label>
+      <input type="text" id="phoneNumber" class="form-control" formControlName="phoneNumber">
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" id="isRegistered" class="form-check-input" formControlName="isRegistered">
+      <label for="isRegistered" class="form-check-label">Is Registered</label>
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" id="hasVoted" class="form-check-input" formControlName="hasVoted">
+      <label for="hasVoted" class="form-check-label">Has Voted</label>
+    </div>
+    <div class="mb-3">
+      <label for="dateOfBirth" class="form-label">Date of Birth</label>
+      <input type="date" id="dateOfBirth" class="form-control" formControlName="dateOfBirth">
+    </div>
+    <div class="mb-3">
+      <label for="referredBy" class="form-label">Referred By</label>
+      <input type="text" id="referredBy" class="form-control" formControlName="referredBy">
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="voterForm.invalid">Submit</button>
+  </form>
+</div>

@@ -1,15 +1,48 @@
-<p>voter-list works!</p>
-<!-- filepath: /election-app/src/app/components/voter-list/voter-list.component.html -->
-<div>
+<div class="container">
   <h2>Voters</h2>
   @if(voters.length > 0) {
-    <p>There are {{ voters.length }} voters.</p>
+    <p>There are total {{ voters.length }} voters.</p>
   }
   @else {
     <p>There are no voters.</p>
   }
+  <p>Registered Voters: {{ registeredCount }}</p>
+  <!-- <p>Voters who haven't voted: {{ notVotedCount }}</p>
+  <a routerLink="/add-voter" class="btn btn-success mb-3">Add New Voter</a>
+  <a routerLink="/voters" class="btn btn-primary mb-3">Refresh</a> -->
 
-   @for(voter of voters;track voter){
-    <li>{{ voter.name }} - {{ voter.age }}</li>
-   }
+  <table class="table table-dark table-striped"
+  datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+    <thead>
+    <tr>
+      <th> Name</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Zip Code</th>
+          <th>Phone Number</th>
+          <th>Is Registered</th>
+          <th>Has Voted</th>
+          <th>Referred By</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(voter of voters;track voter){
+      <tr>
+        <td>{{ voter.firstName }} {{voter.middleName}} {{voter.lastName}}</td>
+       <td>{{ voter.email }}</td>
+        <td>{{ voter.address }}</td>
+        <td>{{ voter.city }}</td>
+        <td>{{ voter.state }}</td>
+        <td>{{ voter.zipCode }}</td>
+        <td>{{ voter.phoneNumber }}</td>
+        <td><input type="checkbox" [checked]="voter.isRegistered" disabled></td>
+        <td><input type="checkbox" [checked]="voter.hasVoted" disabled></td>
+        <td>{{ voter.referredBy }}</td>
+      </tr>
+    }
+  </tbody>
+   
+  </table>
 </div>
