@@ -10,13 +10,27 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+
+var connectionString = builder.Configuration.GetConnectionString("DbConnection");
+
+// log the connection string
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
+var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
+var log = loggerFactory.CreateLogger("Startup");
+log.LogInformation($"Connection string: {connectionString}");
 builder.Services.AddDbContext<DatabaseContext>(options =>
 {
-    options.UseSqlite(builder.Configuration.GetConnectionString("DbConnection"));
+    options.UseSqlite(connectionString);
 });
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly
 (Assembly.GetExecutingAssembly()));
 
+
+// Add health checks
+builder.Services.AddHealthChecks()
+    .AddDbContextCheck<DatabaseContext>("DatabaseContext");
 // Add CORS services
 builder.Services.AddCors(options =>
 {
@@ -59,7 +73,7 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast")
 .WithOpenApi();
-
+app.MapHealthChecks("/health");
 app.MapControllers();
 app.Run();
 
