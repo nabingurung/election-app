@@ -1,11 +1,10 @@
-import { Component, NgModule } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { VoterListComponent } from "./components/voter-list/voter-list.component";
+import { Component } from '@angular/core';
+import { RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, VoterListComponent, CommonModule, ReactiveFormsModule],
+  imports: [RouterOutlet, CommonModule, ReactiveFormsModule,RouterModule, RouterLinkActive],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -7,9 +7,7 @@
     <p>There are no voters.</p>
   }
   <p>Registered Voters: {{ registeredCount }}</p>
-  <!-- <p>Voters who haven't voted: {{ notVotedCount }}</p>
-  <a routerLink="/add-voter" class="btn btn-success mb-3">Add New Voter</a>
-  <a routerLink="/voters" class="btn btn-primary mb-3">Refresh</a> -->
+<p>Voters who haven't voted: {{ notVotedCount }}</p>
 
   <table class="table table-dark table-striped"
   datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
