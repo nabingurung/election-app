@@ -13,11 +13,14 @@ namespace ElectionService.Models
         public string ZipCode { get; set; }
         public string PhoneNumber { get; set; }
         public bool IsRegistered { get; set; }
+        public bool HasFamilyMember { get; set; }
+        public string? SpouseName { get; set; }
         public bool HasVoted { get; set; }
         public DateTime DateOfBirth { get; set; }
     
         public string ReferredBy { get; set; }
         public DateTime CreatedAt { get; internal set; }
         public DateTime UpdatedAt { get; internal set; }
+
     }
 }

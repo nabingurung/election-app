@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <InvariantGlobalization>true</InvariantGlobalization>
+    <InvariantGlobalization>false</InvariantGlobalization>
     <RootNamespace>ElectionService</RootNamespace>
     <UserSecretsId>a3e9e4c9-1af8-4f01-bfb5-90241694b1d1</UserSecretsId>
   </PropertyGroup>

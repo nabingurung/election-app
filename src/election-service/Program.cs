@@ -1,6 +1,8 @@
+using System.Globalization;
 using System.Reflection;
 using ElectionService.Infrastructure;
 using MediatR;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -77,6 +79,7 @@ app.MapGet("/weatherforecast", () =>
 .WithOpenApi();
 app.MapHealthChecks("/health");
 app.MapControllers();
+
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
