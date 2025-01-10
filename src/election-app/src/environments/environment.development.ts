@@ -1,4 +1,4 @@
-// environment.prod.ts
+// environment.dev.ts
 export const environment = {
     production: true,
     awsConfig: {
