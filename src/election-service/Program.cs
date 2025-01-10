@@ -10,8 +10,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+// Read the connection string from environment variables or secret keys
+var connectionString = builder.Configuration.GetConnectionString("DbConnection") 
+                       ?? Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
 
-var connectionString = builder.Configuration.GetConnectionString("DbConnection");
+if (string.IsNullOrEmpty(connectionString)){
+    throw new InvalidOperationException("Connection string is not set");
+}
 
 // log the connection string
 builder.Logging.ClearProviders();
