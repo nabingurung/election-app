@@ -4,6 +4,7 @@ import { VoterService } from '../../services/voter.service';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 
 @Component({
@@ -11,7 +12,8 @@ import { CommonModule } from '@angular/common';
   templateUrl: './add-voter.component.html',
   styleUrls: ['./add-voter.component.css'],
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule]
+  imports: [ReactiveFormsModule, CommonModule,NgxMaskDirective],
+  providers:[provideNgxMask()]
 })
 export class AddVoterComponent {
   voterForm: FormGroup;
@@ -29,13 +31,15 @@ export class AddVoterComponent {
       email: ['', [Validators.required, Validators.email]],
       address: ['', Validators.required],
       city: ['', Validators.required],
-      state: ['', Validators.required],
-      zipCode: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
+      state: ['Maryland',Validators.required],
+     // zipCode: ['', Validators.pattern(/^\d{5}$/)],
+     // phoneNumber: ['', [Validators.required, Validators.pattern(/^\(\d{3}\) \d{3}-\d{4}$/)]], // Phone number pattern
+      zipCode: [''],
+      phoneNumber: ['', [Validators.required]], // Phone number pattern
       isRegistered: [false],
       hasVoted: [false],
-      dateOfBirth: ['', Validators.required],
-      referredBy: ['']
+      referredBy: [''],
+      dateOfBirth:['']
     });
   }
 

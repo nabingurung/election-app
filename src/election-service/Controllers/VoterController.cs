@@ -53,5 +53,21 @@ namespace ElectionService.Controllers
 
             return voter;
         }
+
+        [HttpGet("by-city")]
+    public async Task<ActionResult<IEnumerable<VoterByCityDto>>> GetVotersByCity()
+    {
+        var voters = await _mediator.Send(new GetVotersQuery());
+        var votersByCity = voters
+            .GroupBy(v => v.City)
+            .Select(g => new VoterByCityDto
+            {
+                City = g.Key,
+                Count = g.Count()
+            })
+            .ToList();
+
+        return Ok(votersByCity);
+    }
     }
 }

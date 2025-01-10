@@ -17,7 +17,7 @@ export class VoterListComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
   registeredCount: number = 0;
   notVotedCount: number = 0;
-  voters: Voter[] = [];
+  voters: any[] = [];
  
   constructor(private voterService: VoterService) { }
 
@@ -41,5 +41,23 @@ export class VoterListComponent implements OnInit {
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
   }
+  trackByVoter(index: number, voter: any): number {
+    return voter.id;
+  }
 
+  editVoter(voter: any): void {
+    voter.editing = true;
+  }
+
+  saveVoter(voter: any): void {
+    voter.editing = false;
+    this.voterService.updateVoter(voter).subscribe();
+  }
+
+  cancelEdit(voter: any): void {
+    voter.editing = false;
+    this.voterService.getVoterById(voter.id).subscribe(data => {
+      Object.assign(voter, data, { editing: false });
+    });
+  }
 }

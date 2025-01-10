@@ -14,30 +14,40 @@
     <thead>
     <tr>
       <th> Name</th>
-          <th>Email</th>
+          <!-- <th>Email</th>
           <th>Address</th>
           <th>City</th>
           <th>State</th>
           <th>Zip Code</th>
-          <th>Phone Number</th>
+          <th>Phone Number</th> -->
           <th>Is Registered</th>
           <th>Has Voted</th>
           <th>Referred By</th>
+          <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     @for(voter of voters;track voter){
       <tr>
         <td>{{ voter.firstName }} {{voter.middleName}} {{voter.lastName}}</td>
-       <td>{{ voter.email }}</td>
+       <!-- <td>{{ voter.email }}</td>
         <td>{{ voter.address }}</td>
         <td>{{ voter.city }}</td>
         <td>{{ voter.state }}</td>
         <td>{{ voter.zipCode }}</td>
-        <td>{{ voter.phoneNumber }}</td>
-        <td><input type="checkbox" [checked]="voter.isRegistered" disabled></td>
-        <td><input type="checkbox" [checked]="voter.hasVoted" disabled></td>
+        <td>{{ voter.phoneNumber }}</td> -->
+        <td><input type="checkbox" [checked]="voter.isRegistered" [disabled]="!voter.editing" ></td>
+        <td><input type="checkbox" [checked]="voter.hasVoted" [disabled]="!voter.editing" ></td>
         <td>{{ voter.referredBy }}</td>
+        <td>
+          @if (!voter.editing) {
+            <button (click)="editVoter(voter)" class="btn btn-primary">Edit</button>
+          }
+          @if (voter.editing) {
+            <button (click)="saveVoter(voter)" class="btn btn-success">Save</button>
+            <button (click)="cancelEdit(voter)" class="btn btn-secondary">Cancel</button>
+          }
+        </td>
       </tr>
     }
   </tbody>
