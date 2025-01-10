@@ -22,7 +22,7 @@ var log = loggerFactory.CreateLogger("Startup");
 log.LogInformation($"Connection string: {connectionString}");
 builder.Services.AddDbContext<DatabaseContext>(options =>
 {
-    options.UseSqlite(connectionString);
+    options.UseSqlServer(connectionString);
 });
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly
 (Assembly.GetExecutingAssembly()));
