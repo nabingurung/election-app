@@ -50,6 +50,7 @@ export class AuthService {
 
   async logout() {
     this.isAuthenticated = false;
+    this.loggedInUser=null;
     await signOut();
   }
 
