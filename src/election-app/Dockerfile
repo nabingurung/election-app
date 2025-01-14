@@ -1,15 +1,15 @@
 # Step 1: Build the Angular application
-FROM node:latest AS build
+FROM node:22.0.0-alpine AS build
 WORKDIR /app
 COPY package*.json ./
 # RUN npm ci
-RUN npm install
-RUN npm install -g @angular/cli
+RUN npm install > npm-install.log
+# RUN npm install -g @angular/cli
 COPY . .
-RUN ng build --configuration=production
+RUN ngx build --configuration=production
 
 # Step 2: Serve the Angular application using NGINX
-FROM nginx:latest
+FROM nginx:alpine
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/dist/election-app/browser /usr/share/nginx/html
 
