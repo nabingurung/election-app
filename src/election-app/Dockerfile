@@ -1,5 +1,5 @@
 # Step 1: Build the Angular application
-FROM node:18.19.0 AS build
+FROM node:latest AS build
 WORKDIR /app
 COPY package*.json ./
 # RUN npm ci
