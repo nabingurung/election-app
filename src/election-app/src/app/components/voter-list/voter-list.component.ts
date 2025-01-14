@@ -5,6 +5,7 @@ import {DataTablesModule} from 'angular-datatables';
 import { Config } from 'datatables.net';
 import { Subject } from 'rxjs';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-voter-list',
@@ -19,8 +20,9 @@ export class VoterListComponent implements OnInit {
   registeredCount: number = 0;
   notVotedCount: number = 0;
   voters: any[] = [];
+  transactionUserId: string = '';
  
-  constructor(private voterService: VoterService) { }
+  constructor(private voterService: VoterService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.dtOptions = {
@@ -37,6 +39,19 @@ export class VoterListComponent implements OnInit {
       this.notVotedCount= this.voters.filter(voter => !voter.hasVoted).length;
      
     });
+    this.authService.getCurrentUser().then(user => {
+      console.log(user);
+      this.transactionUserId = user.tokens.signInDetails.loginId;
+    });
+    
+    // const loggedInUser = this.authService.getLoggedInUser();
+    // if (loggedInUser) {
+    //   console.log(loggedInUser);
+    //   //console.log('Logged in user: ', loggedInUser.tokens.signInDetails.loginId);
+    //   this.transactionUserId = loggedInUser.signInDetails.loginId;
+    //   //this.voterForm.patchValue({ transactionUserId: this.transactionUserId });
+    //   console.log('Logged in user: ', this.transactionUserId);
+    // }
   }
 
   ngOnDestroy(): void {
@@ -52,6 +67,8 @@ export class VoterListComponent implements OnInit {
 
   saveVoter(voter: any): void {
     voter.editing = false;
+    console.log(voter);
+    voter.updatedBy = this.transactionUserId;
     this.voterService.updateVoter(voter).subscribe();
   }
 

@@ -43,7 +43,7 @@ namespace ElectionService.CommandHandlers
         existingVoter.HasFamilyMember = voter.HasFamilyMember;
         existingVoter.SpouseName = voter.SpouseName;
         existingVoter.UpdatedAt = DateTime.Now;
-        existingVoter.UpdatedBy= voter.TransactionUserId;
+        existingVoter.UpdatedBy= voter.UpdatedBy;
 
         await _context.SaveChangesAsync();
 

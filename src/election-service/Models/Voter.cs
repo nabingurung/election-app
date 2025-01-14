@@ -22,7 +22,7 @@ namespace ElectionService.Models
         public DateTime CreatedAt { get; internal set; }
         public DateTime UpdatedAt { get; internal set; }
         public string TransactionUserId { get; set; }   
-        public string UpdatedBy { get; set; }   
+        public string? UpdatedBy { get; set; }   
          
     
     }
