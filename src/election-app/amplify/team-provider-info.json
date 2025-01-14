@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-electionapp-dev-57c7d-authRole",
+      "UnauthRoleArn": "arn:aws:iam::337909765563:role/amplify-electionapp-dev-57c7d-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::337909765563:role/amplify-electionapp-dev-57c7d-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-electionapp-dev-57c7d-deployment",
+      "UnauthRoleName": "amplify-electionapp-dev-57c7d-unauthRole",
+      "StackName": "amplify-electionapp-dev-57c7d",
+      "StackId": "arn:aws:cloudformation:us-east-1:337909765563:stack/amplify-electionapp-dev-57c7d/4c287d90-d039-11ef-bcf0-0e99d95f257d",
+      "AmplifyAppId": "dk285fknrrj8u"
+    },
+    "categories": {
+      "auth": {
+        "electionapp75131a52": {}
+      }
+    }
+  }
+}

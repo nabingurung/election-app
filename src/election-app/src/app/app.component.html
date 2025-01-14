@@ -1,6 +1,12 @@
-<nav *ngIf="authService.getAuthStaus()" class="navbar navbar-expand-lg navbar-light bg-light">
+<!-- <amplify-authenticator>
+  <ng-template amplifySlot="authenticated">
+  </ng-template>
+</amplify-authenticator> -->
+
+
+<nav *ngIf="this.authService.getAuthStaus()" class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Election App</a>
+      <a class="navbar-brand" href="#"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" 
        aria-expanded="false" aria-label="Toggle navigation">
@@ -26,9 +32,7 @@
       </div>
     </div>
   </nav>
-
 <router-outlet />
-
 <footer class="bg-dark text-white text-center py-3">
   <p class="mb-0">&copy; 2025 Campaign 2025. All Rights Reserved.</p>
 </footer>

@@ -13,6 +13,14 @@
       <label for="lastName" class="form-label">Last Name</label>
       <input type="text" id="lastName" class="form-control" formControlName="lastName">
     </div>
+     <div class="mb-3 form-check">
+      <input type="checkbox" id="hasSpouse" class="form-check-input" formControlName="hasSpouse">
+      <label for="hasSpouse" class="form-check-label">Do you have a spouse?</label>
+    </div>
+    <div class="mb-3" *ngIf="voterForm.get('hasSpouse')?.getRawValue()">
+      <label for="spouseName" class="form-label">Spouse Name</label>
+      <input type="text" id="spouseName" class="form-control" formControlName="spouseName">
+    </div>
     <div class="mb-3">
       <label for="email" class="form-label">Email</label>
       <input type="email" id="email" class="form-control" formControlName="email">
@@ -50,10 +58,10 @@
       <input type="checkbox" id="hasVoted" class="form-check-input" formControlName="hasVoted">
       <label for="hasVoted" class="form-check-label">Has Voted</label>
     </div>
-     <div class="mb-3">
+     <!-- <div class="mb-3">
       <label for="dateOfBirth" class="form-label">Date of Birth</label>
       <input type="date" id="dateOfBirth" class="form-control" formControlName="dateOfBirth">
-    </div>
+    </div> -->
     <div class="mb-3">
       <label for="referredBy" class="form-label">Referred By</label>
       <input type="text" id="referredBy" class="form-control" formControlName="referredBy">

@@ -4,12 +4,13 @@ import { Voter } from '../../models/voter.model';
 import {DataTablesModule} from 'angular-datatables';
 import { Config } from 'datatables.net';
 import { Subject } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-voter-list',
   templateUrl: './voter-list.component.html',
   styleUrls: ['./voter-list.component.css'],
-  imports: [ DataTablesModule]
+  imports: [ DataTablesModule, FormsModule]
 })
 export class VoterListComponent implements OnInit {
 

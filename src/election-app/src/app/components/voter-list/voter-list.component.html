@@ -36,8 +36,8 @@
         <td>{{ voter.state }}</td>
         <td>{{ voter.zipCode }}</td>
         <td>{{ voter.phoneNumber }}</td> -->
-        <td><input type="checkbox" [checked]="voter.isRegistered" [disabled]="!voter.editing" ></td>
-        <td><input type="checkbox" [checked]="voter.hasVoted" [disabled]="!voter.editing" ></td>
+        <td><input type="checkbox" [(ngModel)]="voter.isRegistered" [disabled]="!voter.editing" ></td>
+        <td><input type="checkbox" [(ngModel)]="voter.hasVoted" [disabled]="!voter.editing" ></td>
         <td>{{ voter.referredBy }}</td>
         <td>
           @if (!voter.editing) {

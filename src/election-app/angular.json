@@ -27,6 +27,7 @@
               }
             ],
             "styles": [
+              "node_modules/@aws-amplify/ui-angular/theme.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css",
               "src/styles.css"
@@ -43,7 +44,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumError": "3MB"
                 },
                 {
                   "type": "anyComponentStyle",

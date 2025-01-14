@@ -31,13 +31,15 @@ namespace ElectionService.CommandHandlers
                 City = request.RegisterVoterRequest.City,
                 State = request.RegisterVoterRequest.State,
                 ZipCode = request.RegisterVoterRequest.ZipCode,
-                HasVoted = false,
+                HasVoted = request.RegisterVoterRequest.HasVoted,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
-                IsRegistered = true,
+                IsRegistered = request.RegisterVoterRequest.IsRegistered,
                 MiddleName = request.RegisterVoterRequest.MiddleName,
-                ReferredBy = request.RegisterVoterRequest.ReferredBy
-
+                ReferredBy = request.RegisterVoterRequest.ReferredBy,
+                HasFamilyMember = request.RegisterVoterRequest.HasFamilyMembers,
+                SpouseName = request.RegisterVoterRequest.SpouseName,
+                TransactionUserId = request.RegisterVoterRequest.TransactionUserId
             };
             _context.Voters.Add(voter);
             await _context.SaveChangesAsync(cancellationToken);

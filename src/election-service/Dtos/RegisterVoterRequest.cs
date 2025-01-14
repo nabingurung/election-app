@@ -16,5 +16,8 @@ namespace ElectionService.Dtos
         public DateTime DateOfBirth { get; set; }
     
         public string ReferredBy { get; set; }
+        public bool HasFamilyMembers { get; set; }
+        public string? SpouseName { get; set; } 
+        public string TransactionUserId { get; set; }
     }
 }

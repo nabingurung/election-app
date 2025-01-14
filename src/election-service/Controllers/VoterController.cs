@@ -1,6 +1,4 @@
 // filepath: /Users/nabingurung/dev/ng-github/election-app/src/election-service/Controllers/VoterController.cs
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using ElectionService.Commands;
 using ElectionService.Dtos;
 using ElectionService.Models;
@@ -32,7 +30,7 @@ namespace ElectionService.Controllers
             var voterId = await _mediator.Send(command);
             return CreatedAtAction(nameof(GetVoterById), new { id = voterId }, voterId);
         }
-      
+
 
         [HttpGet]
         public async Task<IEnumerable<Voter>> GetVoters()
@@ -55,19 +53,38 @@ namespace ElectionService.Controllers
         }
 
         [HttpGet("by-city")]
-    public async Task<ActionResult<IEnumerable<VoterByCityDto>>> GetVotersByCity()
-    {
-        var voters = await _mediator.Send(new GetVotersQuery());
-        var votersByCity = voters
-            .GroupBy(v => v.City)
-            .Select(g => new VoterByCityDto
-            {
-                City = g.Key,
-                Count = g.Count()
-            })
-            .ToList();
+        public async Task<ActionResult<IEnumerable<VoterByCityDto>>> GetVotersByCity()
+        {
+            var voters = await _mediator.Send(new GetVotersQuery());
+            var votersByCity = voters
+                .GroupBy(v => v.City)
+                .Select(g => new VoterByCityDto
+                {
+                    City = g.Key,
+                    Count = g.Count()
+                })
+                .ToList();
 
-        return Ok(votersByCity);
-    }
+            return Ok(votersByCity);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateVoter(int id, [FromBody] Voter voter)
+        {
+            System.Console.WriteLine("UpdateVoter" + voter);
+            if (id != voter.Id)
+            {
+                return BadRequest("Voter ID mismatch");
+            }
+
+            var result = await _mediator.Send(new UpdateVoterCommand { Voter = voter });
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
     }
 }

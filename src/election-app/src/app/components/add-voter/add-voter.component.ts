@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VoterService } from '../../services/voter.service';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { AuthService } from '../../services/auth.service';
+import { signIn } from '@aws-amplify/auth';
 
 
 @Component({
@@ -15,13 +17,15 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
   imports: [ReactiveFormsModule, CommonModule,NgxMaskDirective],
   providers:[provideNgxMask()]
 })
-export class AddVoterComponent {
+export class AddVoterComponent implements OnInit {
   voterForm: FormGroup;
+  transactionUserId: string = '';
 
   constructor(
     private fb: FormBuilder,
     private voterService: VoterService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     
     this.voterForm = this.fb.group({
@@ -39,12 +43,28 @@ export class AddVoterComponent {
       isRegistered: [false],
       hasVoted: [false],
       referredBy: [''],
-      dateOfBirth:['']
+      hasSpouse:[false],
+      spouseName:[''],
+      transactionUserId:['']
     });
+  }
+
+  ngOnInit(): void {
+    const loggedInUser = this.authService.getLoggedInUser();
+    if (loggedInUser) {
+      console.log('Logged in user: ', loggedInUser.tokens.signInDetails.loginId);
+      this.transactionUserId = loggedInUser.signInUserSession;
+      this.voterForm.patchValue({ transactionUserId: this.transactionUserId });
+    }
   }
 
   onSubmit() {
     if (this.voterForm.valid) {
+      // check if the hasSpouse is checked
+      // if it is unchecked, the spouseName field should be empty
+      if(!this.voterForm.value.hasSpouse){
+        this.voterForm.value.spouseName = '';
+      }
       this.voterService.addVoter(this.voterForm.value).subscribe(() => {
         this.router.navigate(['/voters']);
       });

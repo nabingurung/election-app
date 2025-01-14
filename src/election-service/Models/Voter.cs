@@ -21,6 +21,9 @@ namespace ElectionService.Models
         public string ReferredBy { get; set; }
         public DateTime CreatedAt { get; internal set; }
         public DateTime UpdatedAt { get; internal set; }
-
+        public string TransactionUserId { get; set; }   
+        public string UpdatedBy { get; set; }   
+         
+    
     }
 }
