@@ -39,7 +39,6 @@ export class AuthService {
   }
    login(username: string): boolean {
     if (username) {
-      alert('Logged in user: ' + username);
       this.isAuthenticated = true;
       console.log('Logged in user: here');
       this.loggedInUser =  fetchAuthSession();

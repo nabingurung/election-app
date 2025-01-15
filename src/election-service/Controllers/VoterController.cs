@@ -13,6 +13,8 @@ namespace ElectionService.Controllers
     public class VoterController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly List<string> excludedEmails = new List<string> 
+        { "nabingurung82@gmail.com"};
 
         public VoterController(IMediator mediator)
         {
@@ -42,6 +44,13 @@ namespace ElectionService.Controllers
             }
             Console.WriteLine("Email: " + email);
             var voters =  await _mediator.Send(new GetVotersQuery());
+            // Apply filter if the email is not in the excluded list
+            if (!excludedEmails.Contains(email))
+            {
+                System.Console.WriteLine("Filtering voters by email");
+                voters = voters.Where(v => v.TransactionUserId.Trim().ToUpper()
+                 == email.Trim().ToUpper()).ToList();
+            }
             return Ok(voters);
         }
 
@@ -62,7 +71,18 @@ namespace ElectionService.Controllers
         [HttpGet("by-city")]
         public async Task<ActionResult<IEnumerable<VoterByCityDto>>> GetVotersByCity()
         {
+            var email = HttpContext.Request.Headers["X-User-Email"].FirstOrDefault();
+            if (string.IsNullOrEmpty(email))
+            {
+                return BadRequest("User email is missing");
+            }
             var voters = await _mediator.Send(new GetVotersQuery());
+             if (!excludedEmails.Contains(email))
+            {
+                System.Console.WriteLine("Filtering voters by email");
+                voters = voters.Where(v => v.TransactionUserId.Trim().ToUpper()
+                 == email.Trim().ToUpper()).ToList();
+            }
             var votersByCity = voters
                 .GroupBy(v => v.City)
                 .Select(g => new VoterByCityDto
@@ -71,7 +91,7 @@ namespace ElectionService.Controllers
                     Count = g.Count()
                 })
                 .ToList();
-
+            
             return Ok(votersByCity);
         }
 
