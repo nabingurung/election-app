@@ -2,8 +2,9 @@
 FROM node:22.0.0-alpine AS build
 WORKDIR /app
 COPY package*.json ./
-# RUN npm ci
-RUN npm install > npm-install.log
+
+RUN npm install -g @angular/cli@15 aws-amplify && npm install
+
 # RUN npm install -g @angular/cli
 COPY . .
 RUN npx ng build --configuration=production
@@ -21,4 +22,4 @@ COPY --from=build /app/dist/election-app/browser /usr/share/nginx/html
 
 # Expose port 80
  EXPOSE 80
-# CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]
