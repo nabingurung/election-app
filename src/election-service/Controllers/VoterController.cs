@@ -1,4 +1,3 @@
-// filepath: /Users/nabingurung/dev/ng-github/election-app/src/election-service/Controllers/VoterController.cs
 using ElectionService.Commands;
 using ElectionService.Dtos;
 using ElectionService.Models;
@@ -35,7 +34,7 @@ namespace ElectionService.Controllers
 
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Voter>>> GetVoters()
+        public async Task<ActionResult<IEnumerable<VoterDto>>> GetVoters()
         {
             var email = HttpContext.Request.Headers["X-User-Email"].FirstOrDefault();
             if (string.IsNullOrEmpty(email))
@@ -55,7 +54,7 @@ namespace ElectionService.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Voter>> GetVoterById(int id)
+        public async Task<ActionResult<VoterDto>> GetVoterById(int id)
         {
             var voters = await _mediator.Send(new GetVotersQuery());
             var voter = voters.FirstOrDefault(v => v.Id == id);
@@ -96,7 +95,7 @@ namespace ElectionService.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateVoter(int id, [FromBody] Voter voter)
+        public async Task<IActionResult> UpdateVoter(int id, [FromBody] VoterDto voter)
         {
             System.Console.WriteLine("UpdateVoter" + voter);
             if (id != voter.Id)

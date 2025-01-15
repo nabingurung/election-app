@@ -31,17 +31,11 @@ namespace ElectionService.CommandHandlers
         existingVoter.FirstName = voter.FirstName;
         existingVoter.MiddleName = voter.MiddleName;
         existingVoter.LastName = voter.LastName;
-        existingVoter.Email = voter.Email;
-        existingVoter.Address = voter.Address;
         existingVoter.City = voter.City;
-        existingVoter.State = voter.State;
-        existingVoter.ZipCode = voter.ZipCode;
-        existingVoter.PhoneNumber = voter.PhoneNumber;
         existingVoter.IsRegistered = voter.IsRegistered;
         existingVoter.HasVoted = voter.HasVoted;
         existingVoter.ReferredBy = voter.ReferredBy;
         existingVoter.HasFamilyMember = voter.HasFamilyMember;
-        existingVoter.SpouseName = voter.SpouseName;
         existingVoter.UpdatedAt = DateTime.Now;
         existingVoter.UpdatedBy= voter.UpdatedBy;
 
