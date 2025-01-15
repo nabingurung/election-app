@@ -13,6 +13,8 @@ import { BaseChartDirective } from 'ng2-charts';
 export class DashboardComponent {
   registeredVoters: number = 0;
   nonregisteredVoters: number = 0;
+  totalVoters: number = 0;
+  notVotedVoters: number = 0;
   votedVoters: number = 0;
 
 // Chart data
@@ -40,6 +42,8 @@ public barChartPlugins = [];
       this.registeredVoters = voters.filter(voter => voter.isRegistered).length;
       this.nonregisteredVoters = voters.filter(voter => !voter.isRegistered).length;
       this.votedVoters = voters.filter(voter => voter.hasVoted).length;
+      this.notVotedVoters = voters.filter(voter => !voter.hasVoted).length;
+      this.totalVoters = voters.length;
     });
 
     this.voterService.getVotersByCity().subscribe(data => {
