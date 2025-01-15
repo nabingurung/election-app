@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Voter } from '../models/voter.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VoterService {
-  private apiUrl = 'http://localhost:5127/api/voter'; // Update with your API URL
+  private apiUrl = `${environment.apiBaseUrl}/api/voter`; // Update with your API URL
 
   constructor(private http: HttpClient) { }
 

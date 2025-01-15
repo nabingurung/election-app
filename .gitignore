@@ -400,3 +400,5 @@ FodyWeavers.xsd
 *.sln.iml
 .env
 src/election-app/src/.env
+
+docker-compose.yml
