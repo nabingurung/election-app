@@ -39,19 +39,10 @@ export class VoterListComponent implements OnInit {
       this.notVotedCount= this.voters.filter(voter => !voter.hasVoted).length;
      
     });
-    this.authService.getCurrentUser().then(user => {
-      console.log(user);
-      this.transactionUserId = user.tokens.signInDetails.loginId;
+    this.authService.getLoggedInUserEmail().then(email => {
+      this.transactionUserId = email;
     });
     
-    // const loggedInUser = this.authService.getLoggedInUser();
-    // if (loggedInUser) {
-    //   console.log(loggedInUser);
-    //   //console.log('Logged in user: ', loggedInUser.tokens.signInDetails.loginId);
-    //   this.transactionUserId = loggedInUser.signInDetails.loginId;
-    //   //this.voterForm.patchValue({ transactionUserId: this.transactionUserId });
-    //   console.log('Logged in user: ', this.transactionUserId);
-    // }
   }
 
   ngOnDestroy(): void {

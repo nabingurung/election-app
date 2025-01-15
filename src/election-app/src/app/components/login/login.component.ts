@@ -22,11 +22,11 @@ export class LoginComponent {
     Amplify.configure(awsconfig);
 
   }
-  ngOnInit() {
+   ngOnInit() {
     
     const loggedInUser = localStorage.getItem('loggedInUser');
-    if(!loggedInUser) {
-      this.authService.logout();
+    if(loggedInUser==null) {
+      localStorage.clear();
       this.router.navigate(['/login']);
     }
     // Listen for authentication events
@@ -43,7 +43,9 @@ export class LoginComponent {
   }
 
   async logout() {
-    await this.authService.signOut();
-    this.router.navigate(['/homepage']);
+    await this.authService.signOut().then(() => {
+      this.router.navigate(['/homepage']);
+    });
+    
   }
 }

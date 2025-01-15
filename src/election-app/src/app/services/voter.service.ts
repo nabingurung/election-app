@@ -10,10 +10,14 @@ import { environment } from '../../environments/environment';
 })
 export class VoterService {
   private apiUrl = `${environment.apiBaseUrl}/api/voter`; // Update with your API URL
-
-  constructor(private http: HttpClient) { }
+   
+  
+  constructor(private http: HttpClient) { 
+    
+  }
 
   getVoters(): Observable<Voter[]> {
+    
     return this.http.get<Voter[]>(this.apiUrl);
   }
 

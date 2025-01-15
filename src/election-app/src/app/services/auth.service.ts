@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Amplify } from 'aws-amplify';
 import awsconfig from '../../aws-exports';
-import { signOut, fetchAuthSession } from '@aws-amplify/auth';
+import { signOut, fetchAuthSession,AuthUser, fetchUserAttributes, FetchUserAttributesOutput } from '@aws-amplify/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +39,7 @@ export class AuthService {
   }
    login(username: string): boolean {
     if (username) {
+      alert('Logged in user: ' + username);
       this.isAuthenticated = true;
       console.log('Logged in user: here');
       this.loggedInUser =  fetchAuthSession();
@@ -46,12 +47,6 @@ export class AuthService {
       return true;
     }
     return false;
-  }
-
-  async logout() {
-    this.isAuthenticated = false;
-    this.loggedInUser=null;
-    await signOut();
   }
 
   getAuthStaus(): boolean {
@@ -90,6 +85,15 @@ export class AuthService {
   // get logged in user
   getLoggedInUser(): any {
     return this.loggedInUser;
+  }
+
+  // get logged in user email address
+   async getLoggedInUserEmail(): Promise<string> {
+    var loggedUserAttributes : FetchUserAttributesOutput = { email: '' };
+    if(this.loggedInUser != null){
+      loggedUserAttributes = await  fetchUserAttributes();
+    }
+    return loggedUserAttributes.email || '';
   }
 
 }

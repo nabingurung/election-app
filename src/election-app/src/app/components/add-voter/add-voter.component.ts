@@ -50,9 +50,9 @@ export class AddVoterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.authService.getCurrentUser().then(user => {
-      this.transactionUserId = user.tokens.signInDetails.loginId;
+    // get the logged in user email
+    this.authService.getLoggedInUserEmail().then(email => {
+      this.transactionUserId = email;
       this.voterForm.patchValue({ transactionUserId: this.transactionUserId });
     });
     

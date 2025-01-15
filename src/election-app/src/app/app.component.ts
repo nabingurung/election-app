@@ -12,6 +12,9 @@ import { Amplify } from 'aws-amplify';
 import awsconfig from '../aws-exports';
 import { AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
 import { signOut,signIn } from '@aws-amplify/auth';
+import { VoterService } from './services/voter.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './services/authInterceptor';
 
 Amplify.configure(awsconfig);
 
@@ -35,19 +38,8 @@ export class AppComponent {
     Amplify.configure(awsconfig);
   }
 
-  logout() {
-    this.authService.logout();
+  async logout() {
+   await this.authService.signOut();
     this.router.navigate(['/homepage']);
-  }
-  
-  async signOut() {
-    alert('signing out');
-    try {
-      console.log('signing out');
-      await signOut();
-      console.log('sign out success');
-    } catch (error) {
-      console.log('error signing out: ', error);
-    }
   }
 }

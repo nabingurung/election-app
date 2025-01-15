@@ -33,9 +33,16 @@ namespace ElectionService.Controllers
 
 
         [HttpGet]
-        public async Task<IEnumerable<Voter>> GetVoters()
+        public async Task<ActionResult<IEnumerable<Voter>>> GetVoters()
         {
-            return await _mediator.Send(new GetVotersQuery());
+            var email = HttpContext.Request.Headers["X-User-Email"].FirstOrDefault();
+            if (string.IsNullOrEmpty(email))
+            {
+                return BadRequest("User email is missing");
+            }
+            Console.WriteLine("Email: " + email);
+            var voters =  await _mediator.Send(new GetVotersQuery());
+            return Ok(voters);
         }
 
         [HttpGet("{id}")]

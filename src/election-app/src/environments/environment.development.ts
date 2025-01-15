@@ -5,6 +5,6 @@ export const environment = {
     userPoolId: import.meta.env.NG_APP_AWS_USER_POOL_ID,
     userPoolWebClientId: import.meta.env.NG_APP_AWS_USER_POOL_WEB_CLIENT_ID,
   },
-  apiBaseUrl: '',
+  apiBaseUrl: 'http://localhost:5127',
 };
 
